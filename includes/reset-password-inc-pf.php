@@ -43,8 +43,9 @@
 
       $message = '<p>Nós recebemos uma solicitação para redefinição de senha. O link para redefinir sua senha está logo abaixo, se você não solicitou a redefinição da sua senha, ignore este email.</p>';
 
-      $message .= '<p>Aqui está o link para redefinir sua senha: </br>';
-      $message .= '<a href="' . $url . '">' . $url . '</a></p>';
+      $message .= '<p>Clique ';
+      $message .= '<a href="' . $url . '">aqui</a>';
+      $message .= ' para Redefinir sua senha.</p>';
 
       $headers = "From: Hagile Agência Digital <matheushds.br@gmail.com> \r\n";
       $headers .= "Reply-To: matheushds.br@gmail.com\r\n";
