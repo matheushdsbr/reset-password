@@ -20,7 +20,7 @@
     $sql = "SELECT * FROM pwdReset WHERE pwdResetSelector=? AND pwdResetExpires >= ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-      echo "Ocorreu um erro! 1";
+      echo "Ocorreu um erro!";
       exit();
     } else {
       mysqli_stmt_bind_param($stmt, "ss", $selector, $currentDate);
@@ -42,20 +42,20 @@
           $sql = "SELECT * FROM usuarios WHERE email=?;";
           $stmt = mysqli_stmt_init($conn);
           if (!mysqli_stmt_prepare($stmt, $sql)) {
-            echo "Ocorreu um erro! 2";
+            echo "Ocorreu um erro!";
             exit();
           } else {
             mysqli_stmt_bind_param($stmt, "s", $tokenEmail);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
             if (!$row = mysqli_fetch_assoc($result)) {
-              echo "Ocorreu um erro! 3"; //ERRO AQUIII ! ! ! ! ! ! ! ! ! !
+              echo "Ocorreu um erro!";
               exit();
             } else {
               $sql = "UPDATE usuarios SET senha=? WHERE email=?";
               $stmt = mysqli_stmt_init($conn);
               if (!mysqli_stmt_prepare($stmt, $sql)) {
-                echo "Ocorreu um erro! 4";
+                echo "Ocorreu um erro!";
                 exit();
               } else {
                 $newPwdHash = password_hash($password, PASSWORD_DEFAULT);
@@ -65,7 +65,7 @@
                 $sql = "DELETE FROM pwdReset WHERE pwdResetEmail=?";
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
-                  echo "Ocorreu um erro! 5";
+                  echo "Ocorreu um erro!";
                   exit();
                 } else {
                   mysqli_stmt_bind_param($stmt, "s", $tokenEmail);

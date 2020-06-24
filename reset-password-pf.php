@@ -17,6 +17,9 @@
 							if ($_GET["reset"] == "success") {
 								echo '<p class="text-success text-center">Verifique seu e-mail!</p>';
 							}
+							elseif ($_GET["reset"] == "fail") {
+								echo '<p class="text-danger text-center">Digite um E-mail cadastrado!</p>';
+							}
 						}
 					?>
 
