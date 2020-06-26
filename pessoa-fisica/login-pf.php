@@ -20,6 +20,14 @@ session_start();
 				unset($_SESSION['msgcad']);
 			}
 		?>
+
+		<?php
+			if (isset($_GET["newpwd"])) {
+				if ($_GET["newpwd"] == "passwordupdated") {
+					echo '<p class="text-success">Sua senha foi redefinida!</p>';
+				}
+			}
+		?>
 		<form method="POST" action="valida.php">
 			<label>Usuário</label>
 			<input type="text" name="usuario" placeholder="Digite o seu usuário"><br><br>
@@ -31,14 +39,6 @@ session_start();
 
 			<br><br>Você ainda não possui uma conta?
 			<a href="cadastrar.php">Crie grátis</a>
-
-			<?php
-				if (isset($_GET["newpwd"])) {
-					if ($_GET["newpwd"] == "passwordupdated") {
-						echo '<p class="text-success">Sua senha foi redefinida!</p>';
-					}
-				}
-			?>
 
 			<p class="mt-2"><a href="reset-password-pf.php">Esqueceu sua senha?</a></p>
 
