@@ -17,7 +17,7 @@
 
     require 'conexao.php';
 
-    $sql = "SELECT * FROM pwdReset WHERE pwdResetSelector=? AND pwdResetExpires >= ?";
+    $sql = "SELECT * FROM pwdResetPF WHERE pwdResetSelector=? AND pwdResetExpires >= ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
       echo "Ocorreu um erro!";
@@ -39,7 +39,7 @@
           exit();
         } elseif ($tokenCheck === true) {
           $tokenEmail = $row['pwdResetEmail'];
-          $sql = "SELECT * FROM usuarios WHERE email=?;";
+          $sql = "SELECT * FROM usuariosPF WHERE email=?;";
           $stmt = mysqli_stmt_init($conn);
           if (!mysqli_stmt_prepare($stmt, $sql)) {
             echo "Ocorreu um erro!";
@@ -52,7 +52,7 @@
               echo "Ocorreu um erro!";
               exit();
             } else {
-              $sql = "UPDATE usuarios SET senha=? WHERE email=?";
+              $sql = "UPDATE usuariosPF SET senha=? WHERE email=?";
               $stmt = mysqli_stmt_init($conn);
               if (!mysqli_stmt_prepare($stmt, $sql)) {
                 echo "Ocorreu um erro!";
@@ -62,7 +62,7 @@
                 mysqli_stmt_bind_param($stmt, "ss", $newPwdHash, $tokenEmail);
                 mysqli_stmt_execute($stmt);
 
-                $sql = "DELETE FROM pwdReset WHERE pwdResetEmail=?";
+                $sql = "DELETE FROM pwdResetPF WHERE pwdResetEmail=?";
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
                   echo "Ocorreu um erro!";

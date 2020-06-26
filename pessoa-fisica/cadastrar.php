@@ -60,7 +60,7 @@ if($btnCadUsuario){
 		$erroEmail = "";
 		$erroUsuario = "";
 
-		$result_usuario = "SELECT id FROM usuarios WHERE email='". $dados['email'] ."'";
+		$result_usuario = "SELECT id FROM usuariosPF WHERE email='". $dados['email'] ."'";
 		$resultado_usuario = mysqli_query($conn, $result_usuario);
 		if(($resultado_usuario) AND ($resultado_usuario->num_rows != 0)){
 			$erro = true;
@@ -70,7 +70,7 @@ if($btnCadUsuario){
 			$erroEmail = "EMAIL,";
 		}
 
-		$result_usuario = "SELECT id FROM usuarios WHERE usuario='". $dados['usuario'] ."'";
+		$result_usuario = "SELECT id FROM usuariosPF WHERE usuario='". $dados['usuario'] ."'";
 		$resultado_usuario = mysqli_query($conn, $result_usuario);
 		if(($resultado_usuario) AND ($resultado_usuario->num_rows != 0)){
 			$erro = true;
@@ -90,7 +90,7 @@ if($btnCadUsuario){
 		//var_dump($dados);
 		$dados['senha'] = password_hash($dados['senha'], PASSWORD_DEFAULT);
 
-		$result_usuario = "INSERT INTO usuarios (nome, email, usuario, senha, token) VALUES (
+		$result_usuario = "INSERT INTO usuariosPF (nome, email, usuario, senha, token) VALUES (
 						'" .$dados['nome']. "',
 						'" .$dados['email']. "',
 						'" .$dados['usuario']. "',
