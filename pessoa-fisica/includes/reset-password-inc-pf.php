@@ -1,18 +1,17 @@
 <?php
+  require 'conexao.php';
 
   if (isset($_POST["reset-password-submit"])) {
-
-    if (empty($_POST["email"])) {
-      header("Location: ../reset-password-pf.php?reset=fail");
-    } else {
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $query = "SELECT * FROM usuariosPF WHERE email='$email'";
+    $run = mysqli_query($conn, $query);
+    if(mysqli_num_rows($run)>0){
       $selector = bin2hex(random_bytes(8));
       $token = random_bytes(32);
 
       $url = "https://www.hagile.com.br/projetos/teste-sistema-matheus/complexo-seguro/pessoa-fisica/create-new-password-pf.php?selector=" . $selector . "&validator=" . bin2hex($token);
 
       $expires = date("U") + 3600;
-
-      require 'conexao.php';
 
       $usuarioEmail = $_POST["email"];
 
@@ -54,8 +53,10 @@
       mail($to, $subject, $message, $headers);
 
       header("Location: ../reset-password-pf.php?reset=success");
-    }
 
-  } else {
+    }else {
+      header("Location: ../reset-password-pf.php?reset=fail");
+    }
+  }else {
     header("Location: ../login-pf.php");
   }
