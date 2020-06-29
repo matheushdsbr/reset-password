@@ -29,8 +29,8 @@ session_start();
 			}
 		?>
 		<form method="POST" action="valida.php">
-			<label>Usuário</label>
-			<input type="text" name="usuario" placeholder="Digite o seu usuário"><br><br>
+			<label>E-mail</label>
+			<input type="text" name="email" placeholder="Digite o seu usuário"><br><br>
 
 			<label>Senha</label>
 			<input type="password" name="senha" placeholder="Digite a sua senha"><br><br>
@@ -38,7 +38,7 @@ session_start();
 			<input type="submit" name="btnLogin" value="Acessar">
 
 			<br><br>Você ainda não possui uma conta?
-			<a href="cadastrar.php">Crie grátis</a>
+			<a href="cadastrar-pf.php">Crie grátis</a>
 
 			<p class="mt-2"><a href="reset-password-pf.php">Esqueceu sua senha?</a></p>
 
