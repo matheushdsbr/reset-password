@@ -6,10 +6,8 @@ $errors = array();
 
 $nome = "";
 $email = "";
-$usuario = "";
 $bordaErroNome = "";
 $bordaErroEmail = "";
-$bordaErroUsuario = "";
 $bordaErroSenha = "";
 
 $btnCadUsuario = filter_input(INPUT_POST, 'btnCadUsuario', FILTER_SANITIZE_STRING);
@@ -18,7 +16,6 @@ if($btnCadUsuario){
 
 	$nome = $_POST['nome'];
 	$email = $_POST['email'];
-	$usuario = $_POST['usuario'];
 	$senha = $_POST['senha'];
 
 	$dados_rc = filter_input_array(INPUT_POST, FILTER_DEFAULT);
@@ -37,10 +34,10 @@ if($btnCadUsuario){
 			$errors['nome'] = '<p class="text-danger">*Preencha o campo Nome</p>';
 		}
 
-		//if (!filter_var($email, FILTER_VALIDATE_EMAIL) {
-		//	$errors['email'] = "E-mail Inválido";
-		//	$bordaErroEmail = 'border: 2px solid red;';
-		//}
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL) {
+			$bordaErroEmail = 'border: 2px solid red;';
+			$errors['email'] = '<p class="text-danger">*E-mail Inválido</p>';
+		}
 
 		if (empty($email)) {
 			$bordaErroEmail = 'border: 2px solid red;';
@@ -70,15 +67,6 @@ if($btnCadUsuario){
 			$erroEmail = "EMAIL,";
 		}
 
-		$result_usuario = "SELECT id FROM usuariosPJ WHERE usuario='". $dados['usuario'] ."'";
-		$resultado_usuario = mysqli_query($conn, $result_usuario);
-		if(($resultado_usuario) AND ($resultado_usuario->num_rows != 0)){
-			$erro = true;
-			$errors['usuario'] = '<p class="text-danger">Este usuário já está sendo utilizado</p>';
-
-			$bordaErroUsuario = 'border: 2px solid red;';
-			$erroUsuario = $erroUsuario . " USUARIO,";
-		}
 		if ($erro) {
 			$_SESSION['msg'] = "<SCRIPT LANGUAGE='JavaScript' TYPE='text/javascript'>swal('Atenção', ' $erroEmail $erroUsuario JÁ CADASTRADO', 'warning');</SCRIPT>";
 		}
