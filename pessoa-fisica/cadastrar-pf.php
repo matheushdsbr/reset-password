@@ -123,12 +123,6 @@ if($btnCadUsuario){
 			$errors['confsenha'] = '<p class="text-danger">*Preencha o campo Confirmar Senha</p>';
 		}
 
-		if ($dados['senha'] !== $dados['confsenha']) {
-			$bordaErroSenha = 'border: 2px solid red;';
-			$bordaErroConfSenha = 'border: 2px solid red;';
-			$errors['senha'] = '<p class="text-danger">*Senhas não combinam</p>';
-		}
-
 	}
 
 	elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -224,10 +218,10 @@ if($btnCadUsuario){
 		<link rel="stylesheet" href="style.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-		<title>Celke - Cadastrar</title>
+		<title>Cadastro - PF</title>
 	</head>
 	<body class="mx-2 mt-2">
-		<h2>Cadastro</h2>
+		<h2>Cadastro - PF</h2>
 		<?php
 			if(isset($_SESSION['msg'])){
 				echo $_SESSION['msg'];
